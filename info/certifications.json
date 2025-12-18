@@ -1,0 +1,44 @@
+[
+  {
+    "name": "计算机技术与软件专业技术资格（高级）",
+    "certificationBody": "中国人力资源和社会保障部",
+    "date": "2023年5月",
+    "description": "软件设计师高级证书，证明具备系统分析、设计和开发能力"
+  },
+  {
+    "name": "JavaScript高级工程师认证",
+    "certificationBody": "W3C",
+    "date": "2022年12月",
+    "description": "Web前端JavaScript高级开发技能认证"
+  },
+  {
+    "name": "React专业开发者认证",
+    "certificationBody": "Facebook",
+    "date": "2022年9月",
+    "description": "React框架专业开发能力认证"
+  },
+  {
+    "name": "Vue.js高级开发工程师认证",
+    "certificationBody": "Vue.js官方",
+    "date": "2022年6月",
+    "description": "Vue.js框架高级开发技能认证"
+  },
+  {
+    "name": "Oracle数据库SQL认证",
+    "certificationBody": "Oracle",
+    "date": "2021年11月",
+    "description": "数据库SQL语言专业技能认证"
+  },
+  {
+    "name": "AWS Certified Cloud Practitioner",
+    "certificationBody": "Amazon Web Services",
+    "date": "2021年8月",
+    "description": "亚马逊云服务基础架构认证"
+  },
+  {
+    "name": "软考中级-软件设计师",
+    "certificationBody": "中国人力资源和社会保障部",
+    "date": "2020年11月",
+    "description": "软件设计师中级证书，证明具备软件设计和开发能力"
+  }
+]

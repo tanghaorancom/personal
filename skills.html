@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技能 - 我的个人网站</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/favicon.ico">
+    <style>
+        /* 页面标题样式 */
+        .page-header {
+            background-color: #3498db;
+            color: #fff;
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+
+        .page-header h2 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .page-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #fff;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* 技能分类 */
+        .skills-section {
+            background-color: #fff;
+            padding: 60px 0;
+        }
+
+        .skills-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            text-align: center;
+            position: relative;
+        }
+
+        .skills-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background-color: #3498db;
+        }
+
+        /* 技能卡片 */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .skill-category {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-category h4 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: #3498db;
+            text-align: center;
+        }
+
+        /* 技能条 */
+        .skill-item {
+            margin-bottom: 30px;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .skill-name {
+            font-weight: 600;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .skill-level {
+            font-weight: 600;
+            color: #3498db;
+            text-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+
+        .skill-bar {
+            width: 100%;
+            height: 12px;
+            background-color: #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db 0%, #667eea 50%, #764ba2 100%);
+            border-radius: 6px;
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-progress::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        @-webkit-keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* 技能条加载动画 */
+        .skill-progress.animate {
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scaleX(1); }
+            50% { transform: scaleX(1.02); }
+        }
+
+        @-webkit-keyframes pulse {
+            0%, 100% { -webkit-transform: scaleX(1); }
+            50% { -webkit-transform: scaleX(1.02); }
+        }
+
+        /* 证书部分 */
+        .certifications {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+        }
+
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .certification-item {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .certification-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .certification-item h4 {
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .certification-item p {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .certification-date {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            /* 页面标题 */
+            .page-header h2 {
+                font-size: 2rem;
+            }
+
+            .page-header p {
+                font-size: 1rem;
+            }
+
+            /* 技能容器 */
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            /* 证书网格 */
+            .certifications-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>我的个人网站</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于我</a></li>
+                <li><a href="portfolio.html">作品展示</a></li>
+                <li><a href="skills.html" class="active">技能</a></li>
+                <li><a href="contact.html">联系方式</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面标题 -->
+    <section class="page-header">
+        <div class="container">
+            <h2>我的技能</h2>
+            <p>掌握的技术与专业能力</p>
+        </div>
+    </section>
+
+    <!-- 技能展示 -->
+    <section class="skills-section">
+        <div class="container">
+            <h3>技术技能</h3>
+            <div class="skills-container">
+                <!-- 前端技术 -->
+                <div class="skill-category">
+                    <h4>前端技术</h4>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">HTML5</span>
+                            <span class="skill-level">95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">CSS3</span>
+                            <span class="skill-level">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">JavaScript</span>
+                            <span class="skill-level">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">React</span>
+                            <span class="skill-level">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Vue.js</span>
+                            <span class="skill-level">75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Bootstrap</span>
+                            <span class="skill-level">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 后端技术 -->
+                <div class="skill-category">
+                    <h4>后端技术</h4>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Node.js</span>
+                            <span class="skill-level">70%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Express</span>
+                            <span class="skill-level">65%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 65%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">MongoDB</span>
+                            <span class="skill-level">60%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">MySQL</span>
+                            <span class="skill-level">55%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 55%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">RESTful API</span>
+                            <span class="skill-level">75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 设计工具 -->
+                <div class="skill-category">
+                    <h4>设计工具</h4>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Adobe Photoshop</span>
+                            <span class="skill-level">70%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Adobe Illustrator</span>
+                            <span class="skill-level">60%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Figma</span>
+                            <span class="skill-level">75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Sketch</span>
+                            <span class="skill-level">65%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 65%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Axure RP</span>
+                            <span class="skill-level">60%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 开发工具 -->
+                <div class="skill-category">
+                    <h4>开发工具</h4>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Git</span>
+                            <span class="skill-level">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">VS Code</span>
+                            <span class="skill-level">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Webpack</span>
+                            <span class="skill-level">70%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">npm/yarn</span>
+                            <span class="skill-level">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Postman</span>
+                            <span class="skill-level">75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 证书部分 -->
+    <section class="certifications">
+        <div class="container">
+            <h3>证书与资格</h3>
+            <div class="certifications-grid" id="certificationsGrid">
+                <!-- 动态填充内容 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>我的个人网站</h3>
+                    <p>专注于前端开发与用户体验设计</p>
+                </div>
+                <div class="footer-links">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="about.html">关于我</a></li>
+                        <li><a href="portfolio.html">作品展示</a></li>
+                        <li><a href="skills.html">技能</a></li>
+                        <li><a href="contact.html">联系方式</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>社交媒体</h4>
+                    <div class="social-icons">
+                        <a href="#"><img src="images/weixin.png" alt="微信"></a>
+                        <a href="#"><img src="images/weibo.png" alt="微博"></a>
+                        <a href="#"><img src="images/github.png" alt="GitHub"></a>
+                        <a href="#"><img src="images/linkedin.png" alt="LinkedIn"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 我的个人网站. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // 技能条动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const skillItems = document.querySelectorAll('.skill-item');
+            
+            const observerOptions = {
+                threshold: 0.2,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        const progressBar = entry.target.querySelector('.skill-progress');
+                        const skillName = entry.target.querySelector('.skill-name');
+                        const skillLevel = entry.target.querySelector('.skill-level');
+                        
+                        if (progressBar) {
+                            // 获取目标宽度
+                            const targetWidth = progressBar.style.width;
+                            
+                            // 重置宽度并添加动画类
+                            progressBar.style.width = '0';
+                            
+                            // 设置延迟以实现顺序动画
+                            setTimeout(() => {
+                                progressBar.style.width = targetWidth;
+                                progressBar.classList.add('animate');
+                                
+                                // 为技能名称添加颜色变化效果
+                                if (skillName) {
+                                    skillName.style.color = '#3498db';
+                                }
+                                
+                                // 为技能等级添加缩放动画
+                                if (skillLevel) {
+                                    skillLevel.style.transform = 'scale(1.1)';
+                                    skillLevel.style.transition = 'transform 0.3s ease';
+                                    setTimeout(() => {
+                                        skillLevel.style.transform = 'scale(1)';
+                                    }, 300);
+                                }
+                            }, index * 100); // 依次延迟动画
+                            
+                            observer.unobserve(entry.target);
+                        }
+                    }
+                });
+            }, observerOptions);
+            
+            skillItems.forEach(item => {
+                observer.observe(item);
+            });
+        });
+    </script>
+    <script>
+        // 从JSON文件加载证书信息
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('info/certifications.json')
+                .then(response => response.json())
+                .then(certifications => {
+                    const certificationsGrid = document.getElementById('certificationsGrid');
+                    if (certificationsGrid) {
+                        certifications.forEach(cert => {
+                                certificationsGrid.innerHTML += `
+                                    <div class="certification-item">
+                                        <h4>${cert.name}</h4>
+                                        <p>${cert.certificationBody}</p>
+                                        <p class="certification-date">${cert.date}</p>
+                                    </div>
+                                `;
+                            });
+                    }
+                })
+                .catch(error => {
+                    console.error('加载证书信息失败:', error);
+                });
+        });
+    </script>
+</body>
+</html>
