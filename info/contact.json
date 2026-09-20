@@ -1,0 +1,42 @@
+{
+  "channels": [
+    {
+      "icon": "Phone",
+      "title": "电话",
+      "value": "187 7079-7116"
+    },
+    {
+      "icon": "Message",
+      "title": "邮箱",
+      "value": "esoar@foxmail.com"
+    },
+    {
+      "icon": "Location",
+      "title": "地址",
+      "value": "北京市朝阳区某某街道123号"
+    },
+    {
+      "icon": "Clock",
+      "title": "工作时间",
+      "value": "周一至周五: 9:00 - 18:00"
+    }
+  ],
+  "socials": [
+    {
+      "icon": "ChatDotRound",
+      "label": "微信"
+    },
+    {
+      "icon": "Share",
+      "label": "微博"
+    },
+    {
+      "icon": "Platform",
+      "label": "GitHub"
+    },
+    {
+      "icon": "Connection",
+      "label": "LinkedIn"
+    }
+  ]
+}

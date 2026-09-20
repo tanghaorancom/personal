@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "title": "响应式网站设计",
+    "desc": "为某企业设计的响应式官网，适配各种设备屏幕",
+    "category": "website",
+    "tech": ["HTML5", "CSS3", "JavaScript", "Bootstrap"],
+    "image": "/images/website/01-responsive-website.jpg"
+  },
+  {
+    "id": 2,
+    "title": "电商平台",
+    "desc": "功能完善的电商网站，包含商品展示、购物车、支付等功能",
+    "category": "ecommerce",
+    "tech": ["React", "Node.js", "MongoDB", "Redux"],
+    "image": "/images/ecommerce/01-ecommerce-platform.jpg"
+  },
+  {
+    "id": 3,
+    "title": "移动应用界面",
+    "desc": "健康管理类移动应用的UI设计和前端实现",
+    "category": "app",
+    "tech": ["React Native", "TypeScript", "Expo"],
+    "image": "/images/app/01-health-app.jpg"
+  },
+  {
+    "id": 4,
+    "title": "任务管理系统",
+    "desc": "团队协作工具，用于任务分配和进度跟踪",
+    "category": "webapp",
+    "tech": ["Vue.js", "Vuex", "Firebase", "Element UI"],
+    "image": "/images/webapp/01-task-management.jpg"
+  },
+  {
+    "id": 5,
+    "title": "仪表盘UI设计",
+    "desc": "数据可视化仪表盘的设计与实现",
+    "category": "ui",
+    "tech": ["HTML5", "CSS3", "Chart.js", "Sass"],
+    "image": "/images/ui/01-dashboard-ui.jpg"
+  },
+  {
+    "id": 6,
+    "title": "个人博客系统",
+    "desc": "功能丰富的个人博客平台，支持文章发布和评论",
+    "category": "website",
+    "tech": ["Next.js", "React", "Markdown", "MongoDB"],
+    "image": "/images/website/02-personal-blog.jpg"
+  }
+]
